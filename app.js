@@ -1,3 +1,5 @@
+let currentRoom = 'general'; // الغرفة الافتراضية
+
 // دالة لإرسال الرسالة
 function sendMessage() {
   var messageBox = document.getElementById('messages');
@@ -90,4 +92,23 @@ function startPrivateChat() {
 // دالة لإبلاغ عن المستخدم
 function reportUser() {
   alert('تم الإبلاغ عن المستخدم');
+}
+
+// دالة لإضافة غرفة جديدة
+function createRoom() {
+  const roomName = prompt('أدخل اسم الغرفة الجديدة');
+  if (roomName) {
+    const roomList = document.getElementById('roomList');
+    const roomItem = document.createElement('li');
+    roomItem.textContent = roomName;
+    roomItem.onclick = () => joinRoom(roomName);
+    roomList.appendChild(roomItem);
+  }
+}
+
+// دالة للانضمام إلى غرفة
+function joinRoom(roomName) {
+  currentRoom = roomName;
+  document.getElementById('messages').innerHTML = ''; // مسح الرسائل القديمة
+  alert(`تم الانضمام إلى الغرفة: ${roomName}`);
 }
