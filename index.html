@@ -4,92 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>الشات</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 90%;
-      margin: auto;
-      padding-top: 20px;
-    }
-    #messages {
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      height: 300px;
-      overflow-y: scroll;
-      margin-bottom: 10px;
-    }
-    #messageInput {
-      width: 80%;
-      padding: 10px;
-    }
-    #sendBtn {
-      padding: 10px;
-    }
-    #admin-panel {
-      display: none;
-      background: #dff0d8;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #3c763d;
-    }
-    #settings {
-      margin-top: 20px;
-    }
-    .hidden {
-      display: none;
-    }
-    #auth-container {
-      margin: auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      max-width: 400px;
-      text-align: center;
-      margin-top: 50px;
-    }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="auth-container" class="container hidden">
-  <h2>تسجيل عضوية جديدة</h2>
-  <input type="text" id="registerUsername" placeholder="اسم المستخدم">
-  <input type="password" id="registerPassword" placeholder="كلمة المرور">
-  <button onclick="register()">تسجيل عضوية</button>
-
-  <hr>
-
-  <h2>دخول الأعضاء</h2>
-  <input type="text" id="loginUsername" placeholder="اسم المستخدم">
-  <input type="password" id="loginPassword" placeholder="كلمة المرور">
-  <button onclick="login()">دخول الأعضاء</button>
-
-  <hr>
-
-  <h2>دخول الزائرين</h2>
-  <button onclick="guestLogin()">دخول كزائر</button>
-</div>
-
-<div class="container hidden" id="chat-container">
+<div class="container">
   <!-- لوحة تحكم الأدمن -->
   <div id="admin-panel">
     <h2>لوحة تحكم المدير</h2>
@@ -109,140 +28,24 @@
   <div id="settings">
     <h3>الإعدادات الشخصية</h3>
     <button onclick="logout()">تسجيل الخروج</button>
+    <button onclick="toggleTheme()">تبديل الثيم</button>
   </div>
+
+  <!-- نافذة البروفايل -->
+  <div id="profilePopup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px gray;">
+    <img id="profileImage" src="" style="width:80px; height:80px; border-radius:50%;"><br><br>
+    <strong id="profileName"></strong><br><br>
+    <button onclick="startPrivateChat()">مراسلة خاصة</button>
+    <button onclick="reportUser()">إبلاغ عن المستخدم</button><br><br>
+    <button onclick="closeProfile()">إغلاق</button>
+  </div>
+
+  <!-- رفع صورة -->
+  <input type="file" id="uploadImage" accept="image/*" onchange="previewImage()" style="display:none;">
+  <label for="uploadImage" style="cursor:pointer;">📷 رفع صورة</label>
+  <div id="uploadedImagePreview"></div>
 </div>
 
-<!-- نافذة البروفايل -->
-<div id="profilePopup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px gray;">
-  <img id="profileImage" src="" style="width:80px; height:80px; border-radius:50%;"><br><br>
-  <strong id="profileName"></strong><br><br>
-  <button onclick="startPrivateChat()">مراسلة خاصة</button>
-  <button onclick="reportUser()">إبلاغ عن المستخدم</button><br><br>
-  <button onclick="closeProfile()">إغلاق</button>
-</div>
-
-<input type="file" id="uploadImage" accept="image/*" onchange="previewImage()" style="display:none;">
-<label for="uploadImage" style="cursor:pointer;">📷 رفع صورة</label>
-<div id="uploadedImagePreview"></div>
-
-<script>
-  // دوال التسجيل وتسجيل الدخول
-  function register() {
-    var username = document.getElementById('registerUsername').value.trim();
-    var password = document.getElementById('registerPassword').value.trim();
-    if (!username || !password) {
-      alert('الرجاء إدخال اسم المستخدم وكلمة المرور');
-      return;
-    }
-    var users = JSON.parse(localStorage.getItem('users')) || [];
-    var exists = users.find(u => u.username === username);
-    if (exists) {
-      alert('اسم المستخدم مسجل بالفعل');
-      return;
-    }
-    users.push({ username: username, password: password });
-    localStorage.setItem('users', JSON.stringify(users));
-    localStorage.setItem('currentUser', username);
-    alert('تم تسجيل العضوية بنجاح');
-    loadChat();
-  }
-
-  function login() {
-    var username = document.getElementById('loginUsername').value.trim();
-    var password = document.getElementById('loginPassword').value.trim();
-    var users = JSON.parse(localStorage.getItem('users')) || [];
-    var user = users.find(u => u.username === username && u.password === password);
-    if (user) {
-      localStorage.setItem('currentUser', username);
-      loadChat();
-    } else {
-      alert('خطأ في اسم المستخدم أو كلمة المرور');
-    }
-  }
-
-  function guestLogin() {
-    var guestName = prompt("ادخل اسمك كزائر:");
-    if (guestName) {
-      localStorage.setItem('currentUser', "زائر - " + guestName);
-      loadChat();
-    }
-  }
-
-  function loadChat() {
-    document.getElementById('auth-container').classList.add('hidden');
-    document.getElementById('chat-container').classList.remove('hidden');
-
-    var username = localStorage.getItem('currentUser');
-    if (username === "admin") {
-      document.getElementById('admin-panel').style.display = 'block';
-    }
-  }
-
-  // دالة إرسال رسالة
-  function sendMessage() {
-    var messageBox = document.getElementById('messages');
-    var input = document.getElementById('messageInput');
-    if (input.value.trim() !== '') {
-      var message = document.createElement('div');
-      message.textContent = localStorage.getItem('currentUser') + ": " + input.value;
-      messageBox.appendChild(message);
-      input.value = '';
-      messageBox.scrollTop = messageBox.scrollHeight;
-    }
-  }
-
-  // دالة تسجيل الخروج
-  function logout() {
-    localStorage.removeItem('currentUser');
-    window.location.reload();
-  }
-
-  // دوال أخرى
-  function manageUsers() {
-    alert('هذه صفحة إدارة الأعضاء (قيد التطوير)');
-  }
-
-  function manageMessages() {
-    alert('هذه صفحة إدارة الرسائل (قيد التطوير)');
-  }
-
-  function viewReports() {
-    alert('عرض البلاغات (قيد التطوير)');
-  }
-
-  function startPrivateChat() {
-    alert('بدء محادثة خاصة (قيد التطوير)');
-  }
-
-  function reportUser() {
-    alert('تم إرسال بلاغ إلى الإدارة');
-  }
-
-  function closeProfile() {
-    document.getElementById('profilePopup').style.display = 'none';
-  }
-
-  function previewImage() {
-    var file = document.getElementById('uploadImage').files[0];
-    if (file) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        document.getElementById('uploadedImagePreview').innerHTML = '<img src="'+e.target.result+'" style="width:100px;height:100px;border-radius:50%;">';
-      }
-      reader.readAsDataURL(file);
-    }
-  }
-
-  // التحقق عند تحميل الصفحة
-  window.onload = function() {
-    var username = localStorage.getItem('currentUser');
-    if (username) {
-      loadChat();
-    } else {
-      document.getElementById('auth-container').classList.remove('hidden');
-    }
-  };
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
