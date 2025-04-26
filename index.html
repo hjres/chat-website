@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الشات الجماعي</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="chat-page">
+
+<div class="chat-header">
+  <h2>الشات</h2>
+  <button onclick="openSettings()">الإعدادات</button>
+  <button onclick="goToAdminPanel()">لوحة التحكم</button>
+</div>
+
+<div class="messages" id="messages"></div>
+
+<div class="chat-footer">
+  <input type="text" id="messageInput" placeholder="اكتب رسالتك...">
+  <button onclick="sendMessage()">إرسال</button>
+</div>
+
+<div id="settings" class="hidden">
+  <h3>الإعدادات الشخصية</h3>
+  <input type="text" id="newName" placeholder="تغيير اسم المستخدم">
+  <input type="text" id="newStatus" placeholder="تغيير الحالة">
+  <input type="file" id="newAvatar">
+  <select id="themeSelect">
+    <option value="light">ثيم فاتح</option>
+    <option value="dark">ثيم داكن</option>
+  </select>
+  <button onclick="saveSettings()">حفظ الإعدادات</button>
+  <button onclick="closeSettings()">إغلاق</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
