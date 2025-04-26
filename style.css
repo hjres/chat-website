@@ -1,122 +1,79 @@
-/* الصفحة العامة */
 body {
-  font-family: 'Cairo', sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 0;
-  direction: rtl;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-/* صفحة تسجيل الدخول */
-.login-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+.login-container, .chat-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-box {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  width: 300px;
-  text-align: center;
+h2 {
+    text-align: center;
+    color: #333;
 }
 
-.login-box input {
-  width: 90%;
-  margin: 10px 0;
-  padding: 10px;
+label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-.hidden {
-  display: none;
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* صفحة الشات */
-.chat-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.chat-header {
-  background: #009688;
-  color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+button:hover {
+    background-color: #45a049;
 }
 
 .messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  background: #e0f2f1;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 10px;
 }
 
-.chat-footer {
-  display: flex;
-  padding: 10px;
-  background: white;
-}
-
-.chat-footer input {
-  flex: 1;
-  padding: 10px;
-  margin-right: 5px;
-}
-
-.chat-footer button {
-  padding: 10px;
-}
-
-/* إعدادات المستخدم */
-#settings {
-  position: fixed;
-  top: 20%;
-  right: 20%;
-  background: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-/* الرسائل */
 .message {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  position: relative;
+    display: flex;
+    margin-bottom: 10px;
 }
 
-.pinned {
-  background-color: #ffd54f !important;
+.username {
+    font-weight: bold;
+    margin-right: 10px;
 }
 
-/* لوحة تحكم الأدمن */
-.admin-page {
-  padding: 20px;
+.text {
+    color: #333;
 }
 
-.admin-actions {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+input#messageInput {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
 }
 
-#adminUserList li {
-  margin: 10px 0;
-}
-
-/* الصورة الرمزية بجانب الرسالة */
-.avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-left: 5px;
-  vertical-align: middle;
+.chat-container button {
+    width: 15%;
+    background-color: #008CBA;
 }
