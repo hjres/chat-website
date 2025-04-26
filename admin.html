@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم الأدمن</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+
+<h2>لوحة تحكم الأدمن</h2>
+
+<div class="admin-actions">
+  <h3>قائمة الأعضاء</h3>
+  <ul id="adminUserList"></ul>
+
+  <h3>رسائل مثبته</h3>
+  <input type="text" id="pinnedMessage" placeholder="أدخل رسالة للتثبيت">
+  <button onclick="pinMessage()">تثبيت الرسالة</button>
+
+  <h3>الإعدادات العامة</h3>
+  <input type="color" id="adminColorPicker">
+  <button onclick="changeAdminColor()">تغيير لون رسائل الأدمن</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
