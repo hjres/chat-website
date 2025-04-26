@@ -12,9 +12,16 @@
   <!-- لوحة تحكم الأدمن -->
   <div id="admin-panel">
     <h2>لوحة تحكم المدير</h2>
+    <button onclick="createRoom()">إضافة غرفة</button>
     <button onclick="manageUsers()">إدارة الأعضاء</button>
     <button onclick="manageMessages()">إدارة الرسائل</button>
     <button onclick="viewReports()">عرض البلاغات</button>
+  </div>
+
+  <!-- غرف الشات -->
+  <div id="chatRooms">
+    <h3>الغرف:</h3>
+    <ul id="roomList"></ul>
   </div>
 
   <!-- صندوق الرسائل -->
@@ -32,11 +39,11 @@
   </div>
 
   <!-- نافذة البروفايل -->
-  <div id="profilePopup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px gray;">
-    <img id="profileImage" src="" style="width:80px; height:80px; border-radius:50%;"><br><br>
-    <strong id="profileName"></strong><br><br>
+  <div id="profilePopup" style="display:none;">
+    <img id="profileImage" src="" style="width:80px; height:80px; border-radius:50%;">
+    <strong id="profileName"></strong>
     <button onclick="startPrivateChat()">مراسلة خاصة</button>
-    <button onclick="reportUser()">إبلاغ عن المستخدم</button><br><br>
+    <button onclick="reportUser()">إبلاغ عن المستخدم</button>
     <button onclick="closeProfile()">إغلاق</button>
   </div>
 
