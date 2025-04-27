@@ -1,5 +1,19 @@
 let currentRoom = 'general'; // الغرفة الافتراضية
 
+// دالة لتسجيل الدخول
+function login() {
+  var username = prompt("أدخل اسم المستخدم"); // إدخال اسم المستخدم
+  var password = prompt("أدخل كلمة السر"); // إدخال كلمة السر
+
+  // تحقق بسيط من اسم المستخدم وكلمة السر (يمكنك تغيير هذا التحقق ليتناسب مع قواعدك)
+  if (username === 'admin' && password === 'admin123') {
+    localStorage.setItem('currentUser', username); // حفظ اسم المستخدم في localStorage
+    window.location.reload(); // إعادة تحميل الصفحة بعد تسجيل الدخول
+  } else {
+    alert("اسم المستخدم أو كلمة السر غير صحيحة");
+  }
+}
+
 // دالة لإرسال الرسالة
 function sendMessage() {
   var messageBox = document.getElementById('messages');
@@ -37,9 +51,9 @@ window.onload = function () {
 
   var username = localStorage.getItem('currentUser');
   if (!username) {
-    window.location.href = "login.html";
+    login(); // دعوة دالة تسجيل الدخول إذا لم يكن المستخدم مسجلًا
   } else if (username === "admin") {
-    document.getElementById('admin-panel').style.display = 'block';
+    document.getElementById('admin-panel').style.display = 'block'; // عرض لوحة الأدمن إذا كان المستخدم هو "admin"
   }
 };
 
