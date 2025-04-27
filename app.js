@@ -9,8 +9,26 @@ function login() {
   if (username === 'admin' && password === 'admin123') {
     localStorage.setItem('currentUser', username); // حفظ اسم المستخدم في localStorage
     window.location.reload(); // إعادة تحميل الصفحة بعد تسجيل الدخول
+  } else if (localStorage.getItem(username) === password) {
+    localStorage.setItem('currentUser', username); // حفظ اسم المستخدم في localStorage
+    window.location.reload(); // إعادة تحميل الصفحة بعد تسجيل الدخول
   } else {
     alert("اسم المستخدم أو كلمة السر غير صحيحة");
+  }
+}
+
+// دالة لإنشاء حساب جديد
+function createAccount() {
+  var username = prompt("أدخل اسم المستخدم"); // إدخال اسم المستخدم
+  var password = prompt("أدخل كلمة السر"); // إدخال كلمة السر
+
+  // تحقق من وجود اسم المستخدم في localStorage
+  if (localStorage.getItem(username)) {
+    alert("اسم المستخدم موجود بالفعل");
+  } else {
+    // حفظ البيانات في localStorage
+    localStorage.setItem(username, password);
+    alert("تم إنشاء الحساب بنجاح");
   }
 }
 
@@ -125,4 +143,4 @@ function joinRoom(roomName) {
   currentRoom = roomName;
   document.getElementById('messages').innerHTML = ''; // مسح الرسائل القديمة
   alert(`تم الانضمام إلى الغرفة: ${roomName}`);
-}
+} 
