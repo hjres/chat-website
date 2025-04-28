@@ -1,58 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>الشات</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="container">
-  <!-- لوحة تحكم الأدمن -->
-  <div id="admin-panel">
-    <h2>لوحة تحكم المدير</h2>
-    <button onclick="createRoom()">إضافة غرفة</button>
-    <button onclick="manageUsers()">إدارة الأعضاء</button>
-    <button onclick="manageMessages()">إدارة الرسائل</button>
-    <button onclick="viewReports()">عرض البلاغات</button>
-  </div>
-
-  <!-- غرف الشات -->
-  <div id="chatRooms">
-    <h3>الغرف:</h3>
-    <ul id="roomList"></ul>
-  </div>
-
-  <!-- صندوق الرسائل -->
-  <div id="messages"></div>
-
-  <!-- كتابة رسالة -->
-  <input type="text" id="messageInput" placeholder="اكتب رسالتك هنا">
-  <button id="sendBtn" onclick="sendMessage()">إرسال</button>
-
-  <!-- إعدادات المستخدم -->
-  <div id="settings">
-    <h3>الإعدادات الشخصية</h3>
-    <button onclick="logout()">تسجيل الخروج</button>
-    <button onclick="toggleTheme()">تبديل الثيم</button>
-  </div>
-
-  <!-- نافذة البروفايل -->
-  <div id="profilePopup" style="display:none;">
-    <img id="profileImage" src="" style="width:80px; height:80px; border-radius:50%;">
-    <strong id="profileName"></strong>
-    <button onclick="startPrivateChat()">مراسلة خاصة</button>
-    <button onclick="reportUser()">إبلاغ عن المستخدم</button>
-    <button onclick="closeProfile()">إغلاق</button>
-  </div>
-
-  <!-- رفع صورة -->
-  <input type="file" id="uploadImage" accept="image/*" onchange="previewImage()" style="display:none;">
-  <label for="uploadImage" style="cursor:pointer;">📷 رفع صورة</label>
-  <div id="uploadedImagePreview"></div>
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
