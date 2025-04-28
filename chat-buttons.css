@@ -1,0 +1,8 @@
+/* تخصيص زر تعليقات */
+button.fl.btn.btn-primary.fa.fa-comments {
+    border-radius: 8px;
+    margin-right: 130px;
+    color: #FFFFFF;
+    background-color: #bd2130;
+    border-color: #bd2130;
+}

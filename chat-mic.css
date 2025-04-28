@@ -1,0 +1,15 @@
+/* Styles for microphone button */
+#mic .mic {
+    text-align: center;
+    width: 56px;
+    background-image: none;
+    border: 2px solid #afbfc2 !important;
+    background-color: #ffffff;
+    border-radius: 30% 1% !important;
+    margin: 1px !important;
+    height: 47px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover;
+    border-radius: 30% 1% !important;
+}

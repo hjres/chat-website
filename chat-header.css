@@ -1,0 +1,9 @@
+/* Styles for chat header */
+.chat_pane__label {
+    font-size: .55rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 20px;
+    margin: 0;
+    direction: rtl;
+}

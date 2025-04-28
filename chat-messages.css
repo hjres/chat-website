@@ -1,0 +1,23 @@
+/* تنسيق الرسائل */
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #e9ecef;
+    word-wrap: break-word;
+    max-width: 80%;
+}
+
+/* الرسائل المرسلة */
+.message.sent {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+/* الرسائل المستقبلة */
+.message.received {
+    background-color: #f1f1f1;
+    color: #333;
+    margin-right: auto;
+}

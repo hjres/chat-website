@@ -1,0 +1,29 @@
+/* Styles for chat input field */
+.chat__body__message-input__input {
+    width: calc(100% - 5rem);
+    vertical-align: middle;
+    padding: .1em .3em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    direction: rtl;
+    text-align: left;
+    height: 28px!important;
+    border-radius: 3px!important;
+    margin-top: -1px!important;
+    border: lightgrey solid 1px;
+    max-height: 26px;
+    min-height: 26px;
+    font-weight: bold;
+    overflow: hidden;
+    resize: none;
+}
+
+.chat__body__message-input__submit {
+    vertical-align: middle;
+    font-size: .6rem;
+    border-radius: 3px;
+    width: 53px;
+    height: 29px;
+    border: 1px solid #000000;
+    border-color: #000000 !important;
+}
